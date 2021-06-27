@@ -1,5 +1,7 @@
 # MTDI
-Device type detection intelligence
+Device type detection intelligence (supervised machine learning)
 
 Hi
-This machine learned with 57 Data line in XLXS file . you must enter Data az i formted them in it . and at last u can understand the entered data is what kind of Device 
+this code work using a KNN algorithm that is a supervised learning algorithm.
+This machine learning with 57 Data line in the XLXS file. you must enter Data as I formatted them in it.
+at last, when u entered the data u can understand what kind of Device is urs.
