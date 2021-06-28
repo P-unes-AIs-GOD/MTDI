@@ -5,12 +5,10 @@ import seaborn as sb
 from sklearn.cluster import KMeans
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.neighbors import KNeighborsClassifier
+from sklearn.tree import DecisionTreeClassifier
 
 file = 'my-df.xlsx'
 xl = pd.ExcelFile(file)
- 
 array1 = xl.parse('Sheet1')
    
 
@@ -31,25 +29,14 @@ plt.xlabel('Inch')
 plt.ylabel('Weight')
 plt.show()
 
-x_train , x_test , y_train , y_test = train_test_split(x, y, test_size=0.3, random_state=42, stratify=y) # the chart of Testing and Training for choosing better n_neighbors
-neighbors = np.arange(1, 30)
-train_accuracy = np.empty(len(neighbors))
-test_accuracy = np.empty(len(neighbors))
-for i,k in enumerate(neighbors):
-    knn_model = KNeighborsClassifier(n_neighbors=k)
-    knn_model.fit(x_train, y_train)
-    train_accuracy[i] = knn_model.score(x_train, y_train)
-    test_accuracy[i] = knn_model.score(x_test, y_test)
-    
-plt.plot(neighbors, test_accuracy, label = 'Testing Accuracy')
-plt.plot(neighbors, train_accuracy, label = 'Training Accuracy')
-plt.legend()
-plt.xlabel('number of Neighbors')
-plt.ylabel('Accuracy')
-plt.show() # int 4
+x_train , x_test , y_train , y_test = train_test_split(x, y, test_size=0.3, random_state=42, stratify=y) # using Decision tree algorithm 
+dtc = DecisionTreeClassifier()
+dtc = dtc.fit(x_train, y_train)
+p_dtc = dtc.predict(x_test)
 
-knn =  KNeighborsClassifier(n_neighbors=4, metric='minkowski',p=2) # Now just Do it :)
-knn.fit(x,y)
+print(dtc.score(x_test,y_test)) # Nice result
+
+
 
 
 
@@ -66,7 +53,7 @@ knn.fit(x,y)
 
 
 x_new = np.array([[6.5,0.45,4500,3]])
-y_new = knn.predict(x_new)
+y_new = dtc.predict(x_new)
 y_new
 
 
