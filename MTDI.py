@@ -15,6 +15,10 @@ array1 = xl.parse('Sheet1')
 sb.pairplot(array1) #Searching for a good corilation
 plt.show()# Inch & Weight are result of search
 
+corr = array1.corr()
+sb.heatmap(corr, xticklabels=corr.columns, yticklabels=corr.columns, vmin=-1, vmax=1) #a Nice plt chart for corilations 
+plt.show()
+
 array1.boxplot('Inch')# Searching for Bad Data of Inch fature property
 plt.show()
 
